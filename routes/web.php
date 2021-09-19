@@ -20,4 +20,3 @@ Route::get('/', function () {
 Route::resource('users', UserController::class, [
     'only' => ['index', 'store', 'create']
 ]);
-
