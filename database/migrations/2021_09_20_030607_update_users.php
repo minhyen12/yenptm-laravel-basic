@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSoftDeleteToItems extends Migration
+class UpdateUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddSoftDeleteToItems extends Migration
      */
     public function up()
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::table('users', function ($table) {
+            $table->string('mail_address')->unique()->change();
         });
     }
 
@@ -25,8 +25,6 @@ class AddSoftDeleteToItems extends Migration
      */
     public function down()
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->dropColumn('delete_at');
-        });
+        //
     }
 }
