@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
@@ -12,28 +11,22 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('mail_address', 'asc')->paginate(20);
+        $listUser = User::getByUser();
         $stt = 0;
-        if ($users->currentPage() > 1) {
-            $stt = $users->perPage() * ($users->currentPage() - 1);
+        if ($listUser->currentPage() > 1) {
+            $stt = $listUser->perPage() * ($listUser->currentPage() - 1);
         }
-        return view('user/list', ['listUser' => $users, 'stt' => $stt]);
+        return view('user/list', ['listUser' => $listUser, 'stt' => $stt]);
     }
     public function store(RegisterRequest $request)
     {
-        $data = [
-            'mail_address' => $request->mail_address,
-            'name' => $request->name,
-            'password' => md5($request->password),
-            'address' => $request->address,
-            'phone' => $request->phone
-        ];
-        $user = User::create($data);
+
+        $user = User::createUser($request->all());
         if($user) {
-            Session::flash('success', 'Thêm mới thành công!!!');
+            Session::flash('success', trans('messages.success'));
             return redirect()->route('users.index');
         } else {
-            Session::flash('error', 'Thêm không thành công!!!');
+            Session::flash('error', trans('messages.error'));
             return redirect()->route('users.create');
         }
     }

@@ -16,7 +16,6 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('user', [UserController::class, 'index']);
 Route::resource('users', UserController::class, [
     'only' => ['index', 'store', 'create']
 ]);

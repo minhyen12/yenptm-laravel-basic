@@ -55,7 +55,7 @@
                             </script>
                         @endif
                         <div class="form-group">
-                            <label for="name">{{ trans('labels.user_name') }}</label>
+                            <label for="name">Name</label>
                             <input type="text" class="form-control" name="name" id="name">
                         </div>
                         @if ($errors->has('name'))

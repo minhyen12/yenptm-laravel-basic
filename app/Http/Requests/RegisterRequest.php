@@ -24,36 +24,36 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'mail_address' => 'bail|required|email|max:100|unique:users',
-            'password' => 'bail|required|alpha|max:255',
-            'password_cf' => 'bail|required|same:password',
-            'name' => 'bail|required|max:255',
-            'address' => 'bail|max:255',
-            'phone' => 'bail|alpha_num|max:15'
+            'mail_address' => 'required|email|max:100|unique:users',
+            'password' => 'required|alpha|max:255',
+            'password_cf' => 'required|same:password',
+            'name' => 'required|max:255',
+            'address' => 'max:255',
+            'phone' => 'alpha_num|max:15'
         ];
     }
     public function messages()
     {
         return [
-            'mail_address.required' => 'Email không được để trống',
-            'mail_address.email' => 'Email không đúng định dạng',
-            'mail_address.max' => 'Address không vượt quá 100 ký tự',
-            'mail_address.unique' => 'Email là duy nhất',
+            'mail_address.required' => trans('messages.mail_address_required'),
+            'mail_address.email' => trans('messages.mail_address_email'),
+            'mail_address.max' => trans('messages.mail_address_max'),
+            'mail_address.unique' => trans('messages.mail_address_unique'),
 
-            'password.required' => 'Password không được để trống',
-            'password.alpha' => 'Password dạng text',
-            'password.max' => 'Password không vượt quá 255 ký tự',
+            'password.required' => trans('messages.password_required'),
+            'password.alpha' => trans('messages.password_alpha'),
+            'password.max' => trans('messages.password_max'),
 
-            'password_cf.required' => 'Password confirm không được để trống',
-            'password_cf.same' => 'Password không trùng khớp',
+            'password_cf.required' => trans('messages.password_cf_required'),
+            'password_cf.same' => trans('messages.password_cf_same'),
 
-            'name.required' => 'Name không được để trống',
-            'name.max' => 'Name không vượt quá 255 ký tự',
+            'name.required' => trans('messages.name_required'),
+            'name.max' => trans('messages.name_max'),
 
-            'address.max' => 'Address không vượt quá 255 ký tự',
+            'address.max' => trans('messages.address_max'),
 
-            'phone.alpha_num' => 'Phone chỉ gồm các số',
-            'phone.max' => 'Phone không vượt quá 15 ký tự',
+            'phone.alpha_num' => trans('messages.phone_alpha_num'),
+            'phone.max' => trans('messages.phone_max'),
         ];
     }
 }
